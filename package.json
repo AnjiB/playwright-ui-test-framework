@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Playwright UI Test Framework",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:chrome" : "npx playwright test --project=chromium",
+    "test:docker:chrome" : "xvfb-run npx playwright test --project=chromium"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@playwright/test": "^1.46.1",
-    "@types/node": "^22.4.0"
+    "@types/node": "^22.4.0",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^3.0.0-beta.10"
   }
 }
