@@ -10,14 +10,14 @@ class ChakraStockLeftLinksComponentObj {
 
   constructor(page) {
     this.#page = page;
-    this.#mainDashboardLink = this.#page.locator('a[href="#/admin/default"]');
+    this.#mainDashboardLink = this.#page.locator('a[href*="/admin/default"]');
     this.#nftMarketPlaceLink = this.#page.locator(
-      'a[href="#/admin/nft-marketplace"]'
+      'a[href*="/admin/nft-marketplace"]'
     );
-    this.#dataTablesLink = this.#page.locator('a[href="#/admin/data-tables"]');
-    this.#profileLink = this.#page.locator('a[href="#/admin/profile"]');
-    this.#signInLink = this.#page.locator('a[href="#/admin/sign-in"]');
-    this.#rtlAdminLink = this.#page.locator('a[href="#/admin/rtl-default"]');
+    this.#dataTablesLink = this.#page.locator('a[href*="/admin/data-tables"]');
+    this.#profileLink = this.#page.locator('a[href*="/admin/profile"]');
+    this.#signInLink = this.#page.locator('a[href*="/admin/sign-in"]');
+    this.#rtlAdminLink = this.#page.locator('a[href*="/admin/rtl-default"]');
   }
 
   getPage() {

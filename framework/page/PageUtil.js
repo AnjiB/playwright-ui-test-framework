@@ -13,7 +13,7 @@ class PageUtil {
       // optional chaining to avoid undefined errors
       const baseURL = config.use?.baseURL;
       logger.info(`Base URL configured: ${baseURL}`);
-      await this.page.goto(`${path}`);
+      await this.page.goto(path);
       await this.page.waitForLoadState("load", { timeout: 60 }); // The promise resolves after 'load' event.
     });
   }

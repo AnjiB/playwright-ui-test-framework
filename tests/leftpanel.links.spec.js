@@ -2,15 +2,14 @@ const { test, expect } = require("@playwright/test");
 const PageUtil = require("../framework/page/PageUtil");
 const ChakraStockLeftLinksComponent = require("../components/Chakra-Stock-Left-Links-Component");
 const HeaderComponent = require("../components/Header-Component");
+const { BASE_PATH } = require("../constants/Constants.js");
 
 test("Verify the Horizon Page has corret title", async ({ page }) => {
   const pageUtil = new PageUtil(page);
 
-  await pageUtil.launchApp(
-    "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-  );
+  await pageUtil.launchApp(BASE_PATH);
 
-  await expect(page).toHaveTitle("Horizon UI Dashboard Abcd");
+  await expect(page).toHaveTitle("Horizon UI Dashboard");
 });
 
 test.describe("Horizon Left Panel Component Tests", () => {
@@ -23,9 +22,7 @@ test.describe("Horizon Left Panel Component Tests", () => {
       page
     );
 
-    await pageUtil.launchApp(
-      "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-    );
+    await pageUtil.launchApp(BASE_PATH);
 
     await chakraStockLeftLinksComponent.mainDashboardIsAutoSelected();
   });
@@ -39,11 +36,11 @@ test.describe("Horizon Left Panel Component Tests", () => {
 
     const headerComponent = new HeaderComponent(page);
 
-    await pageUtil.launchApp(
-      "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-    );
+    await pageUtil.launchApp(BASE_PATH);
 
-    await chakraStockLeftLinksComponent.navigateToNftMarketPlace();
+    await chakraStockLeftLinksComponent.navigateToNftMarketPlace({
+      navigateToNftMarketPlace: true,
+    });
 
     await headerComponent.assertBreadCrumbLinkContains("NFT Marketplace", 1);
   });

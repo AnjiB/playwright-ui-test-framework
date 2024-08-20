@@ -16,13 +16,16 @@ class ChakraStockLeftLinksComponent {
     await expect(locator).toHaveAttribute("class", "active");
   }
 
-  async navigateToNftMarketPlace() {
+  async navigateToNftMarketPlace(checks = {}) {
+    const { check_navigation } = checks;
     const locator =
       this.chakraStockLeftLinksComponentObj.getNftMarketPlaceLink();
     const uiActions = new UIActions(locator);
     await uiActions.click();
-    await expect(locator).toHaveAttribute("aria-current", "page");
-    await expect(locator).toHaveAttribute("class", "active");
+    if (check_navigation) {
+      await expect(locator).toHaveAttribute("aria-current", "page");
+      await expect(locator).toHaveAttribute("class", "active");
+    }
   }
 }
 

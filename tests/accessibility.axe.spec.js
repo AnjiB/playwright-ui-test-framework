@@ -3,6 +3,7 @@ const PageUtil = require("../framework/page/PageUtil");
 const HeaderComponent = require("../components/Header-Component");
 const ChakraStockLeftLinksComponent = require("../components/Chakra-Stock-Left-Links-Component");
 const AccessbilityUtil = require("../framework/accessibility/AccessbilityUtil");
+const { BASE_PATH } = require("../constants/Constants.js");
 
 test.describe("Accessbility Tests", () => {
   test("Should not have any automatically detectable WCAG A or AA violations @accessibility", async ({
@@ -11,9 +12,7 @@ test.describe("Accessbility Tests", () => {
     const pageUtil = new PageUtil(page);
     const accessbilityUtil = new AccessbilityUtil(page);
 
-    await pageUtil.launchApp(
-      "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-    );
+    await pageUtil.launchApp(BASE_PATH);
 
     await accessbilityUtil.testAccessibilityIssues({
       tags: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"],
@@ -32,9 +31,7 @@ test.describe("Accessbility Tests", () => {
 
       const headerComponent = new HeaderComponent(page);
 
-      await pageUtil.launchApp(
-        "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-      );
+      await pageUtil.launchApp(BASE_PATH);
 
       await chakraStockLeftLinksComponent.navigateToNftMarketPlace();
 

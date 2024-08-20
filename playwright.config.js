@@ -18,7 +18,7 @@ const envConfig = configs[environment];
 const config = defineConfig({
   testDir: "./tests",
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -45,7 +45,7 @@ const config = defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        headless: false,
+        headless: true,
         screenshot: "only-on-failure",
         video: "retain-on-failure",
         trace: "retain-on-failure",
