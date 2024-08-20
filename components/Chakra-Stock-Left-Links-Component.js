@@ -1,29 +1,29 @@
-import {UIActions} from '../framework/UIActions';
-import {expect} from '@playwright/test';
-import {ChakraStockLeftLinksComponentObj} from '../componet-objects/Chakra-Stock-Left-Links-Component-Obj';
-//import {Element} from '../framework/enum/Element'
+const UIActions = require("../framework/actions/UIActions");
+const { expect } = require("@playwright/test");
+const ChakraStockLeftLinksComponentObj = require("../componet-objects/Chakra-Stock-Left-Links-Component-Obj");
 
-export class ChakraStockLeftLinksComponent {
+class ChakraStockLeftLinksComponent {
+  constructor(page) {
+    this.page = page;
+    this.chakraStockLeftLinksComponentObj =
+      new ChakraStockLeftLinksComponentObj(this.page);
+  }
 
-    constructor(page) {
-       this.page = page;
-       this.chakraStockLeftLinksComponentObj = new ChakraStockLeftLinksComponentObj(this.page);
-    }
+  async mainDashboardIsAutoSelected() {
+    const locator =
+      this.chakraStockLeftLinksComponentObj.getMainDashboardLink();
+    await expect(locator).toHaveAttribute("aria-current", "page");
+    await expect(locator).toHaveAttribute("class", "active");
+  }
 
-    async mainDashboardIsAutoSelected() {
-        const locator = this.chakraStockLeftLinksComponentObj.getMainDashboardLink();
-        await expect(locator).toHaveAttribute('aria-current', 'page');
-        await expect(locator).toHaveAttribute('class', 'active');
-    }
+  async navigateToNftMarketPlace() {
+    const locator =
+      this.chakraStockLeftLinksComponentObj.getNftMarketPlaceLink();
+    const uiActions = new UIActions(locator);
+    await uiActions.click();
+    await expect(locator).toHaveAttribute("aria-current", "page");
+    await expect(locator).toHaveAttribute("class", "active");
+  }
+}
 
-    async navigateToNftMarketPlace() {
-        const locator = this.chakraStockLeftLinksComponentObj.getNftMarketPlaceLink();
-        const uiActions = new UIActions(locator);
-        await uiActions.click();
-        await expect(locator).toHaveAttribute('aria-current', 'page');
-        await expect(locator).toHaveAttribute('class', 'active');
-
-    }
-
- }
-
+module.exports = ChakraStockLeftLinksComponent;

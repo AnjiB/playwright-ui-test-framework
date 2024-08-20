@@ -1,56 +1,50 @@
-// @ts-check
-import { test, expect } from "@playwright/test";
-import { PageUtil } from "../framework/PageUtil";
-import {ChakraStockLeftLinksComponent} from '../components/Chakra-Stock-Left-Links-Component'
-import {HeaderComponent} from '../components/Header-Component'
+const { test, expect } = require("@playwright/test");
+const PageUtil = require("../framework/page/PageUtil");
+const ChakraStockLeftLinksComponent = require("../components/Chakra-Stock-Left-Links-Component");
+const HeaderComponent = require("../components/Header-Component");
 
-
-test.skip("Verify the Horizon Page has corret title", async ({ page }) => {
+test("Verify the Horizon Page has corret title", async ({ page }) => {
   const pageUtil = new PageUtil(page);
 
   await pageUtil.launchApp(
     "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
   );
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle("Horizon UI Dashboard");
+  await expect(page).toHaveTitle("Horizon UI Dashboard Abcd");
 });
 
-test.describe('Horizon Left Panel Component Tests', () => {
+test.describe("Horizon Left Panel Component Tests", () => {
+  test("Verify Main Dashboard Link is Selected By Default", async ({
+    page,
+  }) => {
+    const pageUtil = new PageUtil(page);
 
-test.skip("Verify Main Dashboard Link is Selected By Default", async ({ page }) => {
+    const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(
+      page
+    );
 
-  const pageUtil = new PageUtil(page);
+    await pageUtil.launchApp(
+      "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
+    );
 
-  const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(page);
+    await chakraStockLeftLinksComponent.mainDashboardIsAutoSelected();
+  });
 
-  await pageUtil.launchApp(
-    "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-  );
+  test("Verify NFT Market Place Navigation", async ({ page }) => {
+    const pageUtil = new PageUtil(page);
 
-  await chakraStockLeftLinksComponent.mainDashboardIsAutoSelected();
+    const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(
+      page
+    );
 
+    const headerComponent = new HeaderComponent(page);
+
+    await pageUtil.launchApp(
+      "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
+    );
+
+    await chakraStockLeftLinksComponent.navigateToNftMarketPlace();
+
+    await headerComponent.assertBreadCrumbLinkContains("NFT Marketplace", 1);
+  });
 });
-
-test("Verify NFT Market Place Navigation", async ({ page }) => {
-
-  const pageUtil = new PageUtil(page);
-
-  const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(page);
-
-  const headerComponent = new HeaderComponent(page);
-
-  await pageUtil.launchApp(
-    "/horizon-ui-chakra/?ref=readme-horizon#/admin/default"
-  );
-
-  await chakraStockLeftLinksComponent.navigateToNftMarketPlace();
-
-  await headerComponent.assertBreadCrumbLinkContains("NFT Marketplace", 1);
-
-});
-
-});
-
-
-
