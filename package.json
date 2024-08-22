@@ -4,8 +4,8 @@
   "description": "Playwright UI Test Framework",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "npx playwright test --project=chromium",
-    "test:docker:chrome": "xvfb-run npx playwright test --project=chromium"
+    "test:chrome": "npx playwright test --project=chrome",
+    "test:docker:chrome": "xvfb-run npx playwright test --project=chrome"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "@types/node": "^22.4.0",
     "allure-commandline": "^2.30.0",
     "allure-playwright": "^3.0.0-beta.10",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "fs-extra": "^11.2.0",
     "install": "^0.13.0",

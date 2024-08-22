@@ -5,15 +5,16 @@ const ChakraStockLeftLinksComponent = require("../components/Chakra-Stock-Left-L
 const AccessbilityUtil = require("../framework/accessibility/AccessbilityUtil");
 const { BASE_PATH } = require("../constants/Constants.js");
 
+test.beforeEach(async ({ page }) => {
+  const pageUtil = new PageUtil(page);
+  await pageUtil.launchApp(BASE_PATH);
+});
+
 test.describe("Accessbility Tests", () => {
   test("Should not have any automatically detectable WCAG A or AA violations @accessibility", async ({
     page,
   }) => {
-    const pageUtil = new PageUtil(page);
     const accessbilityUtil = new AccessbilityUtil(page);
-
-    await pageUtil.launchApp(BASE_PATH);
-
     await accessbilityUtil.testAccessibilityIssues({
       tags: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"],
     });
@@ -21,20 +22,12 @@ test.describe("Accessbility Tests", () => {
     test("Should not have any automatically detectable accessibility issues On Nft MarketPlace", async ({
       page,
     }) => {
-      const pageUtil = new PageUtil(page);
-
       const accessbilityUtil = new AccessbilityUtil(page);
-
       const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(
         page
       );
-
       const headerComponent = new HeaderComponent(page);
-
-      await pageUtil.launchApp(BASE_PATH);
-
       await chakraStockLeftLinksComponent.navigateToNftMarketPlace();
-
       await accessbilityUtil.testAccessibilityIssues();
     });
 });

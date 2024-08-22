@@ -16,15 +16,16 @@ const envConfig = configs[environment];
  * @see https://playwright.dev/docs/test-configuration
  */
 const config = defineConfig({
+  //timeout: 5 * 60 * 1000,
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : undefined,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 1,
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [["allure-playwright"]],
@@ -42,20 +43,26 @@ const config = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
+      name: "chrome",
       use: {
+        
         ...devices["Desktop Chrome"],
         headless: true,
         screenshot: "only-on-failure",
-        video: "retain-on-failure",
+        video: "on",
         trace: "retain-on-failure",
       },
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
+      use: { ...devices["Desktop Firefox"] ,
+      headless: true,
+        screenshot: "only-on-failure",
+        video: "on",
+        trace: "retain-on-failure",
+    }
+  },
 
     {
       name: "webkit",
