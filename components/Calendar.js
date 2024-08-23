@@ -11,6 +11,10 @@ class Calendar {
     this.rootLocator = locator;
   }
 
+  /**
+   * Selects the date on calendar current monthly view
+   * @param {*} dateString
+   */
   async #selectDay(dateString) {
     await this.rootLocator.waitFor();
     await new UIActions(this.rootLocator).scrollIntoView();
@@ -26,6 +30,10 @@ class Calendar {
     });
   }
 
+  /**
+   * Verifies if provided Date is selected or not
+   * @param {Date} date
+   */
   async verifyIfDateSelected(date) {
     await this.rootLocator.waitFor();
     await new UIActions(this.rootLocator).scrollIntoView();
@@ -37,6 +45,12 @@ class Calendar {
     await expect(dateLocator).toHaveClass(/react-calendar__tile--active/);
   }
 
+  /**
+   * Selects the date by navigating to desired mothly view.
+   * If date is past, method clicks on Previous button on calendar till
+   * it reaches to the desired month, and respectively for future date.
+   * @param {*} targetDate
+   */
   async selectDate(targetDate) {
     await this.rootLocator.waitFor();
     await this.rootLocator.scrollIntoViewIfNeeded();

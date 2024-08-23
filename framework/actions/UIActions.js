@@ -6,6 +6,9 @@ class UIActions {
     this.locator = locator;
   }
 
+  /**
+   * Click on the locator
+   */
   async click() {
     await test.step("Clicking on the Element", async () => {
       await this.locator.waitFor();
@@ -13,6 +16,9 @@ class UIActions {
     });
   }
 
+  /**
+   * Doubel clicks on the locator
+   */
   async doubleClick() {
     await test.step("Double clicking on the Element", async () => {
       await this.locator.waitFor();
@@ -20,6 +26,9 @@ class UIActions {
     });
   }
 
+  /**
+   * Clicks on the locator using Javascript
+   */
   async jsClick() {
     await test.step("Clicking using JS", async () => {
       logger.info("JS Click");
@@ -27,6 +36,9 @@ class UIActions {
     });
   }
 
+  /**
+   * Checks the check box
+   */
   async check() {
     await test.step(`Checking the check box`, async () => {
       await this.locator.waitFor();
@@ -35,6 +47,9 @@ class UIActions {
     });
   }
 
+  /**
+   * Unchecks the check box
+   */
   async uncheck() {
     await test.step(`Unchecking the check box`, async () => {
       await this.locator.waitFor();
@@ -42,6 +57,10 @@ class UIActions {
     });
   }
 
+  /**
+   * Wait for locator to be visible for given amount of time in seconds
+   * @param {Number} waitTime
+   */
   async waitTillVisible(waitTime = 30) {
     await test.step("Waiting for an element to be visible", async () => {
       await this.locator.waitFor({
@@ -51,21 +70,21 @@ class UIActions {
     });
   }
 
+  /**
+   * Returns the text content o the
+   * @returns
+   */
   async getTextContent() {
     return await test.step("Getting text content", async () => {
       await this.locator.waitFor();
       return await this.locator.textContent();
     });
-
-    /**
-     * 
-     * await test.step("Getting text content", async () => {
-      await this.locator.waitFor();
-      return await this.locator.textContent();
-    });
-     */
   }
 
+  /**
+   * Presses the given key on keyboard
+   * @param {String} key
+   */
   async keyPress(key) {
     await test.step("Pressing on key" + key, async () => {
       await this.locator.waitFor();
@@ -73,6 +92,9 @@ class UIActions {
     });
   }
 
+  /**
+   * Scrolls the page into view of the locator
+   */
   async scrollIntoView() {
     await test.step("Scrolling to the view of element", async () => {
       await this.locator.waitFor();
@@ -80,12 +102,21 @@ class UIActions {
     });
   }
 
-  async getAttribute(attribute) {
+  /**
+   * Get attribute value of given attribue
+   * @param {String} attribute
+   * @returns
+   */
+  async getAttributeValue(attribute) {
     return await test.step(`Getting attribute value of ${attribute}`, async () => {
       return await this.locator.getAttribute(attribute);
     });
   }
 
+  /**
+   * Fills the text box with provided text
+   * @param {String} text
+   */
   async fillText(text) {
     await test.step(`Filling the text ${text}`, async () => {
       await this.locator.waitFor();
@@ -93,6 +124,9 @@ class UIActions {
     });
   }
 
+  /**
+   * Mouse hover on the locator
+   */
   async hover() {
     await test.step("Hovering to the element", async () => {
       await this.locator.waitFor();
@@ -100,6 +134,10 @@ class UIActions {
     });
   }
 
+  /**
+   * Selects the locator in dropdown by its value
+   * @param {String} value
+   */
   async selectByValue(value) {
     await test.step(`Selecting option by its value ${value}`, async () => {
       await this.locator.waitFor();
@@ -107,6 +145,10 @@ class UIActions {
     });
   }
 
+  /**
+   * Selects the locator in dropdown by its value
+   * @param {String} text
+   */
   async selectByVisibleText(text) {
     await test.step(`Selecting option by its visible text ${text}`, async () => {
       await this.locator.waitFor();
@@ -114,6 +156,10 @@ class UIActions {
     });
   }
 
+  /**
+   * Selects the locator in dropdown by its index. Index stats from 0
+   * @param {Number} index
+   */
   async selectByIndex(index) {
     await test.step(`Selecting option by its index at ${index}`, async () => {
       await this.locator.waitFor();
@@ -121,6 +167,10 @@ class UIActions {
     });
   }
 
+  /**
+   * Returns all available options in dropdown
+   * @returns
+   */
   async getAllOptions() {
     return await test.step("Get all available options to be selected", async () => {
       await this.locator.waitFor();
@@ -128,6 +178,10 @@ class UIActions {
     });
   }
 
+  /**
+   * Returns all selected options
+   * @returns
+   */
   async getAllSelectedOptions() {
     return await test.step("Get all available options to be selected", async () => {
       await this.locator.waitFor();
