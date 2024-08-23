@@ -1,5 +1,5 @@
 // @ts-ignore
-const logger = require("../framework/logger/CustomLogger");
+const logger = require("../logger/CustomLogger");
 
 async function sleep(msec) {
   logger.info(`Waitng for milli seconds: ${msec}`);

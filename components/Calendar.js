@@ -3,7 +3,7 @@ const CalendarObj = require("../componet-objects/Calendar-Obj");
 // @ts-ignore
 const logger = require("../framework/logger/CustomLogger");
 const UIActions = require("../framework/actions/UIActions");
-const formatDate = require("../framework/DateUtil.js");
+const formatDate = require("../framework/utils/DateUtil");
 
 class Calendar {
   constructor(page, locator) {

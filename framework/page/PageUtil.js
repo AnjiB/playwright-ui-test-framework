@@ -20,13 +20,19 @@ class PageUtil {
 
   async closePage() {
     await test.step("Closing Application", async () => {
-      await page.close();
+      await this.page.close();
     });
   }
 
   async goBack() {
     await test.step("Navigating to previous page", async () => {
-      await page.goBack();
+      await this.page.goBack();
+    });
+  }
+
+  async waitForURL(url) {
+    await test.step(`Waiting for URL ${url}`, async () => {
+      await this.page.waitForURL(url);
     });
   }
 }

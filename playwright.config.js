@@ -37,7 +37,10 @@ const config = defineConfig({
     baseURL: process.env.PLAYWRIGHT_BASE_URL || envConfig.baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    headless: true,
+    screenshot: "only-on-failure",
+    video: "on",
+    trace: "retain-on-failure",
   },
 
   /* Configure projects for major browsers */
@@ -45,39 +48,38 @@ const config = defineConfig({
     {
       name: "chrome",
       use: {
-        
         ...devices["Desktop Chrome"],
-        headless: true,
-        screenshot: "only-on-failure",
-        video: "on",
-        trace: "retain-on-failure",
+        channel: "chrome",
       },
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] ,
-      headless: true,
-        screenshot: "only-on-failure",
-        video: "on",
-        trace: "retain-on-failure",
-    }
-  },
+      use: {
+        ...devices["Desktop Firefox"],
+      },
+    },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: {
+        ...devices["Desktop Safari"],
+      },
     },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+    {
+      name: "Mobile Chrome",
+      use: {
+        ...devices["Pixel 5"],
+      },
+    },
+    {
+      name: "Mobile Safari",
+      use: {
+        ...devices["iPhone 12"],
+      },
+    },
 
     /* Test against branded browsers. */
     // {

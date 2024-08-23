@@ -3,9 +3,10 @@ const PageUtil = require("../framework/page/PageUtil");
 const ChakraStockLeftLinksComponent = require("../components/Chakra-Stock-Left-Links-Component");
 const HeaderComponent = require("../components/Header-Component");
 const { BASE_PATH } = require("../constants/Constants.js");
+let pageUtil;
 
 test.beforeEach(async ({ page }) => {
-  const pageUtil = new PageUtil(page);
+  pageUtil = new PageUtil(page);
   await pageUtil.launchApp(BASE_PATH);
 });
 
@@ -31,6 +32,7 @@ test.describe("Horizon Left Panel Component Tests", () => {
     await chakraStockLeftLinksComponent.navigateToNftMarketPlace({
       navigateToNftMarketPlace: true,
     });
+    await pageUtil.waitForURL("**/nft-marketplace");
     await headerComponent.assertBreadCrumbLinkContains("NFT Marketplace", 1);
   });
 });
