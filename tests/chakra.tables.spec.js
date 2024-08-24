@@ -9,7 +9,7 @@ test.describe("Chakra Table Tests", () => {
         });
         const checkTable = page.locator(".chakra-table").nth(0);
         await checkTable.scrollIntoViewIfNeeded();
-        const table = new Table(page, checkTable);
+        const table = new Table(checkTable);
         const cellElement = await table.getCellByText("Horizon UI PRO");
         const checkLoc =  cellElement.locator("label");
         console.log(await checkLoc.textContent());

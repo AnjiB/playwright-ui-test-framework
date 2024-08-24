@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 test("Verify current date is selected on calendar component", async ({
   page,
 }) => {
-  const calendar = new Calendar(page, page.locator(rootLocator));
+  const calendar = new Calendar(page.locator(rootLocator));
   const date = new Date();
   await calendar.verifyIfDateSelected(date);
 });
