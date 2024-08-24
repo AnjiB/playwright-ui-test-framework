@@ -1,7 +1,7 @@
 // @ts-check
 const { defineConfig, devices } = require("@playwright/test");
 require("dotenv").config();
-const configs = require("./configuration/envConfigs");
+const configs = require("./configuration/env_configs");
 //const CustomReporter = require("./framework/reporting/CustomReporter");
 const environment = process.env.ENV || "DEV";
 const envConfig = configs[environment];

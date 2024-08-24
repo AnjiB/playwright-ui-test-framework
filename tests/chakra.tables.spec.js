@@ -1,5 +1,5 @@
 const {expect, test} = require("@playwright/test");
-const Table = require("../components/Table");
+const Table = require("../components/table_component.js");
 
 test.describe("Chakra Table Tests", () => {
     test("Testing Table Component CheckBox ", {tag: '@tables',}, async ({page}) => {

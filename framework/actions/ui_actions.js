@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const logger = require("../logger/CustomLogger");
+const logger = require("../logger/custom_logger");
 
 class UIActions {
   constructor(locator) {

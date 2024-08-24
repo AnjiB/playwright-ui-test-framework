@@ -1,8 +1,8 @@
 const { test, expect } = require("@playwright/test");
-const PageUtil = require("../framework/page/PageUtil");
-const ChakraStockLeftLinksComponent = require("../components/Chakra-Stock-Left-Links-Component");
-const HeaderComponent = require("../components/Header-Component");
-const { BASE_PATH } = require("../constants/Constants.js");
+const PageUtil = require("../framework/page/page_util.js");
+const ChakraStockLeftLinksComponent = require("../components/chakra_stock_left_inks_component.js");
+const HeaderComponent = require("../components/header_component.js");
+const { BASE_PATH } = require("../constants/constants.js");
 let pageUtil;
 
 test.beforeEach(async ({ page }) => {

@@ -1,7 +1,7 @@
 const { test } = require("@playwright/test");
 const config = require("../../playwright.config");
 // @ts-ignore
-const logger = require("../logger/CustomLogger");
+const logger = require("../logger/custom_logger");
 
 class PageUtil {
   constructor(page) {

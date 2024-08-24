@@ -31,6 +31,7 @@ class ChakraStockLeftLinksComponentObj {
   getNftMarketPlaceLink() {
     return this.#nftMarketPlaceLink;
   }
+
 }
 
 module.exports = ChakraStockLeftLinksComponentObj;

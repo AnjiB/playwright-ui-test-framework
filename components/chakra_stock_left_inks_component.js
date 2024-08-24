@@ -1,6 +1,6 @@
-const UIActions = require("../framework/actions/UIActions");
+const UIActions = require("../framework/actions/ui_actions");
 const { expect } = require("@playwright/test");
-const ChakraStockLeftLinksComponentObj = require("../componet-objects/Chakra-Stock-Left-Links-Component-Obj");
+const ChakraStockLeftLinksComponentObj = require("../componet_objects/chakra_stock_left_links_comp_obj");
 
 class ChakraStockLeftLinksComponent {
   constructor(page) {

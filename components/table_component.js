@@ -1,8 +1,7 @@
-const logger = require("../framework/logger/CustomLogger");
+const logger = require("../framework/logger/custom_logger");
 
 class Table {
-  constructor(page, rootElement) {
-    this.page = page;
+  constructor(rootElement) {
     this.rootElement = rootElement;
   }
 
@@ -33,7 +32,7 @@ class Table {
     let isRowContainsText = false;
     for (let i = 0; i < rowCount; i++) {
       const text = await rows.nth(i).textContent();
-      logger.info(`Text at index ${i} is ${text}`);
+      logger.info(`Text at row index ${i} is ${text}`);
       if (text.includes(matchText)) {
         desiredRow = rows.nth(i);
         isRowContainsText = true;
@@ -51,7 +50,7 @@ class Table {
       const colCount = await columns.count();
       for (let j = 0; j < colCount; j++) {
         const colText = await columns.nth(j).textContent();
-        logger.info(`Text at index ${j} is ${colText}`);
+        logger.info(`Text at column index ${j} is ${colText}`);
         if (colText.includes(matchText)) {
           desiredColumn = columns.nth(j);
           break;

@@ -1,7 +1,7 @@
 const { test } = require("@playwright/test");
-const PageUtil = require("../framework/page/PageUtil.js");
-const { BASE_PATH } = require("../constants/Constants.js");
-const Calendar = require("../components/Calendar.js");
+const PageUtil = require("../framework/page/page_util.js");
+const { BASE_PATH } = require("../constants/constants.js");
+const Calendar = require("../components/calendar_component.js");
 const rootLocator = "div[class = react-calendar]";
 
 test.beforeEach(async ({ page }) => {

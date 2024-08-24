@@ -1,13 +1,12 @@
 const { expect } = require("@playwright/test");
-const CalendarObj = require("../componet-objects/Calendar-Obj");
+const CalendarObj = require("../componet_objects/calendar_comp_obj");
 // @ts-ignore
-const logger = require("../framework/logger/CustomLogger");
-const UIActions = require("../framework/actions/UIActions");
-const formatDate = require("../framework/utils/DateUtil");
+const logger = require("../framework/logger/custom_logger");
+const UIActions = require("../framework/actions/ui_actions");
+const formatDate = require("../framework/utils/date_util");
 
 class Calendar {
-  constructor(page, locator) {
-    this.page = page;
+  constructor(locator) {
     this.rootLocator = locator;
   }
 

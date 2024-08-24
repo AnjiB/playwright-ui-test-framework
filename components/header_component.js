@@ -1,5 +1,5 @@
-const HeaderComponentObj = require("../componet-objects/Header-Component-Obj");
 const { expect } = require("@playwright/test");
+const HeaderComponentObj = require("../componet_objects/header_component_obj.js");
 
 class HeaderComponent {
   constructor(page) {
