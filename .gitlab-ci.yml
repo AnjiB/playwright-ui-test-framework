@@ -1,3 +1,6 @@
+variables:
+  PLAYWRIGHT_BASE_URL: "${PLAYWRIGHT_BASE_URL:-https://horizon-ui.com/horizon-ui-chakra/admin/default}"
+
 stages:
  - run_tests
  - generate_reports
@@ -8,18 +11,14 @@ Running Tests:
   stage: run_tests
   tags:
     - docker
-  except:
-    variables:
-      - $CI_MERGE_REQUEST_TITLE = /ˆWIP:.*/
   script:
     - npm install
     - npm run test:$BROWSER
-  only:
-    refs:
-      - schedules
-    variables:
-      - $TEST_JOB = "run_tests_chrome"
-  
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $TEST_JOB == "run_tests_chrome"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TITLE !~ /^WIP:/'
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"'
+    
   artifacts:
     when: always
     paths:
@@ -65,10 +64,10 @@ pages:
     - mkdir public
     - mv ./allure-report/* public
   artifacts:
-  when: always
-  paths:
-    - ./allure-report/*
-  expire_in: 14 days
+    when: always
+    paths:
+      - ./allure-report/*
+    expire_in: 14 days
 
 
 

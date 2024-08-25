@@ -6,6 +6,10 @@ const configs = require("./configuration/env_configs");
 //const CustomReporter = require("./framework/reporting/CustomReporter");
 const environment = process.env.ENV || "DEV";
 const envConfig = configs[environment];
+const timeoutStr = process.env.PLAYWRIGHT_TIMEOUT ?? '30000';
+const timeout = parseInt(timeoutStr, 10);
+const validatedTimeout = !isNaN(timeout) && timeout > 0 ? timeout : 30000;
+
 
 /**
  * Read environment variables from file.
@@ -17,7 +21,7 @@ const envConfig = configs[environment];
  * @see https://playwright.dev/docs/test-configuration
  */
 const config = defineConfig({
-  //timeout: 5 * 60 * 1000,
+  timeout: validatedTimeout,
   testDir: "./tests",
   snapshotDir: process.env.SNAPSHOT_DIR ?  process.env.SNAPSHOT_DIR : 'visual_testing',
   /* Run tests in files in parallel */

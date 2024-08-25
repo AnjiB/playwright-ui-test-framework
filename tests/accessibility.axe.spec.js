@@ -3,11 +3,10 @@ const PageUtil = require("../framework/page/page_util.js");
 const HeaderComponent = require("../components/header_component.js");
 const ChakraStockLeftLinksComponent = require("../components/chakra_stock_left_inks_component.js");
 const AccessbilityUtil = require("../framework/accessibility/accessibility_util.js");
-const { BASE_PATH } = require("../constants/constants.js");
 
 test.beforeEach(async ({ page }) => {
   const pageUtil = new PageUtil(page);
-  await pageUtil.launchApp(BASE_PATH);
+  await pageUtil.launchApp();
 });
 
 test.describe("Accessbility Tests", () => {
@@ -19,7 +18,7 @@ test.describe("Accessbility Tests", () => {
       tags: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"],
     });
   }),
-    test("Should not have any automatically detectable accessibility issues On Nft MarketPlace", async ({
+    test("Should not have any automatically detectable accessibility issues On Nft MarketPlace @accessibility", async ({
       page,
     }) => {
       const accessbilityUtil = new AccessbilityUtil(page);

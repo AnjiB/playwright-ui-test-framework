@@ -2,14 +2,13 @@ const { test, expect } = require("@playwright/test");
 const PageUtil = require("../framework/page/page_util.js");
 const ChakraStockLeftLinksComponent = require("../components/chakra_stock_left_inks_component.js");
 const HeaderComponent = require("../components/header_component.js");
-const { BASE_PATH } = require("../constants/constants.js");
 const fs = require("fs");
 const path = require("path");
 let pageUtil;
 
 test.beforeEach(async ({ page }) => {
   pageUtil = new PageUtil(page);
-  await pageUtil.launchApp(BASE_PATH);
+  await pageUtil.launchApp();
 });
 
 test("Verify the Horizon Page has corret title", async ({ page }) => {

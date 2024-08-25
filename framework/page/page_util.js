@@ -12,13 +12,13 @@ class PageUtil {
    * Open the page with provided URL
    * @param {String} path
    */
-  async launchApp(path) {
+  async launchApp() {
     await test.step("Launching App", async () => {
       // optional chaining to avoid undefined errors
       const baseURL = config.use?.baseURL;
       logger.info(`Base URL configured: ${baseURL}`);
-      await this.page.goto(path);
-      await this.page.waitForLoadState("load", { timeout: 60 }); // The promise resolves after 'load' event.
+      await this.page.goto(baseURL);
+      await this.page.waitForLoadState("load", { timeout: 60 });
     });
   }
   /**
