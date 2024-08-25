@@ -22,6 +22,9 @@ const validatedTimeout = !isNaN(timeout) && timeout > 0 ? timeout : 30000;
  */
 const config = defineConfig({
   timeout: validatedTimeout,
+  expect: {
+    timeout: validatedTimeout,
+  },
   testDir: "./tests",
   snapshotDir: process.env.SNAPSHOT_DIR ?  process.env.SNAPSHOT_DIR : 'visual_testing',
   /* Run tests in files in parallel */
