@@ -1,4 +1,13 @@
 # playwright-ui-test-framework
+
+### Tech Stack
+* Node 21.5.0
+* NPM 10.2.4
+* Playwright 1.46.1
+* Allure Playwright 3.0.0-beta.10
+* Allure Command Line: 2.30.0
+
+
 ### Test Automation Architecture:
 ![Blank document](https://github.com/user-attachments/assets/aedabf50-5f86-464b-be9f-6b6bed8ece4a)
 
