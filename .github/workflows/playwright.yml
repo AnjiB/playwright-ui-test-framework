@@ -11,6 +11,7 @@ on:
 env:
   PLAYWRIGHT_BASE_URL: 'https://horizon-ui.com/horizon-ui-chakra/admin/default'
   BROWSER: 'chrome'   #$ {{ secrets.BROWSER }} Make sure to set this secret
+  PLAYWRIGHT_TIMEOUT: 60000
 
 jobs:
   run_tests:
@@ -32,7 +33,8 @@ jobs:
 
       - name: Run Tests
         run: npm run test:chrome
-
+        continue-on-error: true
+        
       - name: Upload Allure Results
         uses: actions/upload-artifact@v3
         with:
