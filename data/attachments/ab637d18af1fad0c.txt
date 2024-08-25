@@ -1,1 +1,0 @@
-2024-08-25 16:06:11 [INFO] default - Base URL configured: https://horizon-ui.com/horizon-ui-chakra/admin/default
