@@ -8,11 +8,11 @@
 * Allure Command Line: 2.30.0
 
 
-### Test Automation Architecture:
+### Test Automation Architecture
 ![Blank document](https://github.com/user-attachments/assets/aedabf50-5f86-464b-be9f-6b6bed8ece4a)
 
 
-### The framework and tests to automate Horizon UI consists of several layers.
+### The framework and tests to automate Horizon UI consists of several layers
 
 * **Test Layer**: Contains tests
 * **Component Layer**: Contains all the end user functional behavior methods per component.
@@ -21,7 +21,7 @@
 * **Utils Layer**: Contains Utils like Logger. Configs, Date etc
 * **Core Layer**:  Core layer contains of Playwright and Allure & other libraries
 
-### Generic flow of a test: 
+### Generic flow of a test
 * A test mainly interacts with PageUtils & Components.
 * Components consist of all business / functional methods.
 * Components internally get locators from Component Object classes and interact with UIActions & other Utils to perform actions on each individual html elements like button, checkbox, etc.,
@@ -80,7 +80,7 @@ The tests follow a modular and maintainable structure:
 |-- Dockerfile.playwright
 ```
 
-## How to run Tests:
+## How to run Tests
 ### From VSCode
 * Import the test project into any IDE like Visual Studio to run the tests on IDE. Note: IDE must have plugin "Playwright Test". Please follow the instructions for VS Code here: https://playwright.dev/docs/getting-started-vscode
 ### Running tests from Terminal
