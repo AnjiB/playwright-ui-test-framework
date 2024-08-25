@@ -1,5 +1,6 @@
 const {expect, test} = require("@playwright/test");
 const Table = require("../components/table_component.js");
+const logger = require("../framework/logger/custom_logger.js");
 
 test.describe("Chakra Table Tests", () => {
     test("Testing Table Component CheckBox ", {tag: '@tables',}, async ({page}) => {
@@ -12,7 +13,7 @@ test.describe("Chakra Table Tests", () => {
         const table = new Table(checkTable);
         const cellElement = await table.getCellByText("Horizon UI PRO");
         const checkLoc =  cellElement.locator("label");
-        console.log(await checkLoc.textContent());
+        logger.info(await checkLoc.textContent());
         await checkLoc.scrollIntoViewIfNeeded();
         await checkLoc.hover();
         await checkLoc.check();
