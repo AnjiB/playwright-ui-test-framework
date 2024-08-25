@@ -1,22 +1,23 @@
 class HeaderComponentObj {
-  #page;
   #breadCrumbList;
   #root;
+  #searchBox;
 
-  constructor(page) {
-    this.#page = page;
-    this.#root = this.#page.locator("div[transition-property]");
-    this.#breadCrumbList = this.#page.locator(
-      "div[transition-property] .chakra-breadcrumb__list li"
+  constructor(root) {
+    this.#root = root;
+    this.#breadCrumbList = this.#root.locator(
+      ".chakra-breadcrumb__list li"
     );
-  }
 
-  getHeaderRootElement() {
-    return this.#root;
+    this.#searchBox = this.#root.locator("input");
   }
 
   getBreadCrumbList() {
     return this.#breadCrumbList;
+  }
+
+  getSearchBox() {
+    return this.#searchBox;
   }
 }
 

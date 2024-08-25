@@ -3,6 +3,8 @@ const PageUtil = require("../framework/page/page_util.js");
 const ChakraStockLeftLinksComponent = require("../components/chakra_stock_left_inks_component.js");
 const HeaderComponent = require("../components/header_component.js");
 const { BASE_PATH } = require("../constants/constants.js");
+const fs = require("fs");
+const path = require("path");
 let pageUtil;
 
 test.beforeEach(async ({ page }) => {
@@ -28,11 +30,32 @@ test.describe("Horizon Left Panel Component Tests", () => {
     const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(
       page
     );
-    const headerComponent = new HeaderComponent(page);
+    const headerComponent = new HeaderComponent(page.locator("div[transition-property]"));
     await chakraStockLeftLinksComponent.navigateToNftMarketPlace({
       navigateToNftMarketPlace: true,
     });
     await pageUtil.waitForURL("**/nft-marketplace");
     await headerComponent.assertBreadCrumbLinkContains("NFT Marketplace", 1);
+  });
+});
+
+test.describe("Navigation Tests", () => {
+  const dataPath = path.resolve(__dirname, "../testdata/left_nav_links.json");
+  const testData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+  testData.forEach((data) => {
+    test(
+      `should navigate to ${data.name} link`,
+      { tag: "@nav_link" },
+      async ({ page }) => {
+        const chakraStockLeftLinksComponent = new ChakraStockLeftLinksComponent(
+          page
+        );
+        // Get the locator for the link
+        const locator = chakraStockLeftLinksComponent.navigateTopath(data.path);
+
+        // Verify the URL is correct
+        await expect(page).toHaveURL(data.path);
+      }
+    );
   });
 });

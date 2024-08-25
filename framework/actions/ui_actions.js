@@ -11,7 +11,6 @@ class UIActions {
    */
   async click() {
     await test.step("Clicking on the Element", async () => {
-      await this.locator.waitFor();
       await this.locator.click();
     });
   }
@@ -21,7 +20,6 @@ class UIActions {
    */
   async doubleClick() {
     await test.step("Double clicking on the Element", async () => {
-      await this.locator.waitFor();
       await this.locator.dblclick();
     });
   }
@@ -41,7 +39,6 @@ class UIActions {
    */
   async check() {
     await test.step(`Checking the check box`, async () => {
-      await this.locator.waitFor();
       await expect(this.locator).toBeChecked();
       await this.locator.check();
     });
@@ -52,7 +49,6 @@ class UIActions {
    */
   async uncheck() {
     await test.step(`Unchecking the check box`, async () => {
-      await this.locator.waitFor();
       await this.locator.uncheck();
     });
   }
@@ -76,7 +72,6 @@ class UIActions {
    */
   async getTextContent() {
     return await test.step("Getting text content", async () => {
-      await this.locator.waitFor();
       return await this.locator.textContent();
     });
   }
@@ -87,7 +82,6 @@ class UIActions {
    */
   async keyPress(key) {
     await test.step("Pressing on key" + key, async () => {
-      await this.locator.waitFor();
       await this.locator.press(key);
     });
   }
@@ -119,7 +113,6 @@ class UIActions {
    */
   async fillText(text) {
     await test.step(`Filling the text ${text}`, async () => {
-      await this.locator.waitFor();
       await this.locator.fill(text);
     });
   }
@@ -129,7 +122,6 @@ class UIActions {
    */
   async hover() {
     await test.step("Hovering to the element", async () => {
-      await this.locator.waitFor();
       await this.locator.hover();
     });
   }
@@ -140,7 +132,6 @@ class UIActions {
    */
   async selectByValue(value) {
     await test.step(`Selecting option by its value ${value}`, async () => {
-      await this.locator.waitFor();
       await this.locator.selectOption(value);
     });
   }
@@ -151,7 +142,6 @@ class UIActions {
    */
   async selectByVisibleText(text) {
     await test.step(`Selecting option by its visible text ${text}`, async () => {
-      await this.locator.waitFor();
       await this.locator.selectOption({ label: text });
     });
   }
@@ -162,7 +152,6 @@ class UIActions {
    */
   async selectByIndex(index) {
     await test.step(`Selecting option by its index at ${index}`, async () => {
-      await this.locator.waitFor();
       await this.locator.selectOption({ index });
     });
   }
@@ -173,7 +162,6 @@ class UIActions {
    */
   async getAllOptions() {
     return await test.step("Get all available options to be selected", async () => {
-      await this.locator.waitFor();
       return await this.locator.locator("option").allTextContents();
     });
   }
@@ -184,7 +172,6 @@ class UIActions {
    */
   async getAllSelectedOptions() {
     return await test.step("Get all available options to be selected", async () => {
-      await this.locator.waitFor();
       return await this.locator
         .locator("option[selected='selected']")
         .allTextContents();

@@ -1,0 +1,76 @@
+stages:
+ - run_tests
+ - generate_reports
+ - publish_reports
+
+Running Tests:
+  image: 
+  stage: run_tests
+  tags:
+    - docker
+  except:
+    variables:
+      - $CI_MERGE_REQUEST_TITLE = /ˆWIP:.*/
+  script:
+    - npm install
+    - npm run test:$BROWSER
+  only:
+    refs:
+      - schedules
+    variables:
+      - $TEST_JOB = "run_tests_chrome"
+  
+  artifacts:
+    when: always
+    paths:
+      - ./allure-results/*
+    expire_in: 14 days
+
+Generating Reports:
+  image: adoptopenjdk/openjdk8:jdku292-b10-ubuntu-slip
+  stage: generate_reports
+  tags:
+    - docker
+  before_script:
+    - curl o allure-2.13.8.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
+    - tar -zxvf allure-2.13.8.tgz -C /opt/
+    - ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
+    - allure --version
+  when: always
+  only:
+    refs:
+     - schedules
+    variables:
+      - $TEST_JOB == 'run_tests_chrome'
+  script:
+    - echo 'Generating Allure Report'
+    - allure geneate allure-results
+  artifacts:
+    when: always
+    paths:
+      - ./allure-report/*
+    expire_in: 14 days
+
+pages:
+  stage: publish_reports
+  when: always
+  only:
+    refs:
+      - schedules
+    variables:
+      - $TEST_JOB == 'run_tests_chrome'
+  tags: 
+    - docker
+  script:
+    - mkdir public
+    - mv ./allure-report/* public
+  artifacts:
+  when: always
+  paths:
+    - ./allure-report/*
+  expire_in: 14 days
+
+
+
+    
+  

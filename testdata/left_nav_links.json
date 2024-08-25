@@ -1,0 +1,27 @@
+[
+    {   
+        "name": "Main Dashboard", 
+        "path": "admin/default" 
+    }, 
+    {   
+        "name": "NFT Market Place", 
+        "path": "admin/nft-marketplace" 
+    },
+    {   
+        "name": "Data Tables", 
+        "path": "admin/data-tables" 
+    },
+    {   
+        "name": "Profile", 
+        "path": "admin/profile" 
+    },
+    {   
+        "name": "Sign In", 
+        "path": "auth/sign-in" 
+    },
+    {   
+        "name": "RTL Admin", 
+        "path": "rtl/rtl-default" 
+    }
+
+]

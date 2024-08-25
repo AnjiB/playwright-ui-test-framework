@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test:chrome": "npx playwright test --project=chrome",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
     "test:docker:chrome": "xvfb-run npx playwright test --project=chrome"
   },
   "keywords": [],

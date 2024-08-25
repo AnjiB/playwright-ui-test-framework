@@ -32,6 +32,9 @@ class ChakraStockLeftLinksComponentObj {
     return this.#nftMarketPlaceLink;
   }
 
+  getLinkLocator(navPath) {
+    return this.#page.locator(`a[href*="/${navPath}"]`);
+  }
 }
 
 module.exports = ChakraStockLeftLinksComponentObj;

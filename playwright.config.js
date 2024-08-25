@@ -1,5 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require("@playwright/test");
+// @ts-ignore
 require("dotenv").config();
 const configs = require("./configuration/env_configs");
 //const CustomReporter = require("./framework/reporting/CustomReporter");
@@ -18,6 +19,7 @@ const envConfig = configs[environment];
 const config = defineConfig({
   //timeout: 5 * 60 * 1000,
   testDir: "./tests",
+  snapshotDir: process.env.SNAPSHOT_DIR ?  process.env.SNAPSHOT_DIR : 'visual_testing',
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -29,13 +31,13 @@ const config = defineConfig({
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [["allure-playwright"]],
+  snapshotPathTemplate: '/{snapshotDir}/__screenshots__/{testFilePath}/{arg}{ext}',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // PLAYWRIGHT_BASE_URL is only for docker demo purpose.
     // Ideally it should be like baseURL: envConfig.baseURL,
     baseURL: process.env.PLAYWRIGHT_BASE_URL || envConfig.baseURL,
-
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless: true,
     screenshot: "only-on-failure",
