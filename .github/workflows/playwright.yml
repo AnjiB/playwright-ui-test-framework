@@ -1,27 +1,90 @@
-name: Playwright Tests
+name: CI Workflow
+
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
   pull_request:
-    branches: [ main, master ]
+    branches:
+      - main
+
+env:
+  PLAYWRIGHT_BASE_URL: 'https://horizon-ui.com/horizon-ui-chakra/admin/default'
+  BROWSER: 'chrome'   #$ {{ secrets.BROWSER }} Make sure to set this secret
+
 jobs:
-  test:
-    timeout-minutes: 60
+  run_tests:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.46.0-jammy  # Use the Playwright Docker image
+    if: |
+      github.event_name == 'pull_request' ||
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install browsers
+        run: npx playwright install chrome firefox webkit
+
+      - name: Run Tests
+        run: npm run test:chrome
+
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: ./allure-results/
+          
+  generate_reports:
+    runs-on: ubuntu-latest
+    needs: run_tests
+    if: github.event_name == 'pull_request' || github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Allure Commandline
+        run: |
+          curl -o allure-2.13.8.tgz -L https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
+          tar -zxvf allure-2.13.8.tgz -C /opt/
+          sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
+          allure --version
+
+      - name: Generate Allure Report
+        run: |
+          echo 'Generating Allure Report'
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: ./allure-report/
+
+  publish_reports:
+    runs-on: ubuntu-latest
+    needs: generate_reports
+    if: github.event_name == 'pull_request' || github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Download Allure Report
+        uses: actions/download-artifact@v3
+        with:
+          name: allure-report
+
+      - name: Prepare Public Directory
+        run: |
+          mkdir -p public
+          mv ./allure-report/* public/
+
+      - name: Upload Public Directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: ./public/

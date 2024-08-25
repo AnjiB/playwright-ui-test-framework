@@ -7,7 +7,7 @@ stages:
  - publish_reports
 
 Running Tests:
-  image: 
+  image: mcr.microsoft.com/playwright:v1.46.0-jammy
   stage: run_tests
   tags:
     - docker
