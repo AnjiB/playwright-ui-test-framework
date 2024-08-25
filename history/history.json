@@ -1,0 +1,1 @@
+{"7896af876acde36c15d99c8cceadb480:94dadec355fb24357203fcbce2c308f6":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"6a0d828d0cf107de","reportUrl":"https://AnjiB.github.io/playwright-ui-test-framework/21//#testresult/6a0d828d0cf107de","status":"passed","time":{"start":1724600669311,"stop":1724600692114,"duration":22803}}]}}
