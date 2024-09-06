@@ -84,6 +84,7 @@ The tests follow a modular and maintainable structure:
 ### From VSCode
 * Import the test project into any IDE like Visual Studio to run the tests on IDE. Note: IDE must have plugin "Playwright Test". Please follow the instructions for VS Code here: https://playwright.dev/docs/getting-started-vscode
 ### Running tests from Terminal
+* Pre-requisite : cd into ```playwright-ui-test-framework``` and run ```npm install```
 * Run all the tests : ```npx playwright test```
 * Run the tests only against chrome: ```npm run test:chrome```
 * We can also run the test using tags. Ex: ```npm run test:chrome — – grep @accessibility```
