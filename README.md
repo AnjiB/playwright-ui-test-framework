@@ -86,13 +86,13 @@ The tests follow a modular and maintainable structure:
 ### Running tests from Terminal
 * Pre-requisite : cd into ```playwright-ui-test-framework``` and run ```npm install```
 * Run all the tests : ```npx playwright test```
-* Run the tests only against chrome: ```npm run test:chrome```
-* We can also run the test using tags. Ex: ```npm run test:chrome — – grep @accessibility```
+* Run the tests only against chromium: ```npm run test:chromium```
+* We can also run the test using tags. Ex: ```npm run test:chromium — – grep @accessibility```
 * Run the tests only against projects configured in playwright configuration: ```npx playwright test –project=firefox```
 
 **Note:** Read more instructions here https://playwright.dev/docs/running-tests to know how to run the tests.
 
 We also have support to pass playwright base url from environment variable as below.
 
-```PLAYWRIGHT_BASE_URL=https://horizon-ui.com/horizon-ui-chakra/admin/default#/admin/default npm run test:chrome -- --grep=@search```
+```PLAYWRIGHT_BASE_URL=https://horizon-ui.com/horizon-ui-chakra/admin/default#/admin/default npm run test:chromium -- --grep=@search```
 

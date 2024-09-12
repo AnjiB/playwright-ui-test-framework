@@ -63,6 +63,14 @@ const config = defineConfig({
     },
 
     {
+      name: "chromium",
+      use: {
+        ...devices["Desktop Chromium"],
+        channel: "chromium",
+      },
+    },
+
+    {
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
