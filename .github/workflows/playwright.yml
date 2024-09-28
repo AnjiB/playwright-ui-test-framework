@@ -29,10 +29,10 @@ jobs:
         run: npm install
 
       - name: Install browsers
-        run: npx playwright install chrome firefox webkit
+        run: npx playwright install firefox webkit
 
       - name: Run Tests
-        run: npm run test:chrome
+        run: npm run test:chromium
         continue-on-error: true
 
       - name: Get Allure history
